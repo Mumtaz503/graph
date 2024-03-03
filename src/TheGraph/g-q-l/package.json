@@ -1,0 +1,18 @@
+{
+  "name": "g-q-l",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ g-q-l",
+    "create-local": "graph create --node http://localhost:8020/ g-q-l",
+    "remove-local": "graph remove --node http://localhost:8020/ g-q-l",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 g-q-l",
+    "test": "graph test"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.68.5",
+    "@graphprotocol/graph-ts": "0.32.0"
+  },
+  "devDependencies": { "matchstick-as": "0.5.0" }
+}
