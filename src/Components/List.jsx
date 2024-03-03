@@ -1,6 +1,20 @@
 import { Table } from "@web3uikit/core";
+import { useQuery, gql } from "@apollo/client";
+
+const GET_USER_INFO = gql`
+{
+    stores(first: 5) {
+      id
+      name_
+      _job
+      experience_
+    }
+  }
+`
 
 export default function List() {
+    const {loading, error, data} = useQuery(GET_USER_INFO);
+    console.log(data);
     return (
         <div className="user--list">
             <h3>People who have entered their info</h3>
