@@ -1,0 +1,9 @@
+type Store @entity(immutable: true) {
+  id: Bytes!
+  name_: String! # string
+  _job: String! # string
+  experience_: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

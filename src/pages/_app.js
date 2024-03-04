@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import NavBar from "../Components/NavBar";
 import Body from "@/Components/Body";
-import List from "@/Components/List";
+import ListComponent from "@/Components/ListComponent";
 import { MoralisProvider } from "react-moralis";
 import { NotificationProvider } from "@web3uikit/core";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }) {
         <NotificationProvider>
           <NavBar />
           <Body />
-          <List />
+          <ListComponent />
           <Component {...pageProps} />
         </NotificationProvider>
       </div>

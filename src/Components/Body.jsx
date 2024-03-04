@@ -18,7 +18,7 @@ export default function Body() {
   });
   const dispatch = useNotification();
 
-  function handleChange(event) {
+  function handleChange (event) {
     setStoreData(prevData => {
       return {
         ...prevData,
@@ -101,7 +101,7 @@ export default function Body() {
             value: ''
           },
           {
-            name: 'your experience',
+            name: 'Experience',
             type: 'number',
             validation: {
               required: true
@@ -109,7 +109,7 @@ export default function Body() {
             value: ''
           }]
         }
-        onChange={() => handleChange}
+        onChange={handleChange}
         isDisabled={buttonState}
       />
     </div>

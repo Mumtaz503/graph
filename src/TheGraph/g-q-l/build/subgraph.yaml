@@ -1,0 +1,26 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Storage
+    network: sepolia
+    source:
+      address: "0xd29e01cdffaa49d8f2c12f90d155643227404bd4"
+      abi: Storage
+      startBlock: 5374006
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Store
+      abis:
+        - name: Storage
+          file: Storage/abis/Storage.json
+      eventHandlers:
+        - event: Store(string,string,uint256)
+          handler: handleStore
+      file: Storage/Storage.wasm

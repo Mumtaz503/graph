@@ -1,1 +1,296 @@
-{}
+{
+  "../../node_modules/@web3auth/openlogin-adapter/dist/openloginAdapter.esm.js -> @toruslabs/openlogin-ed25519": {
+    "id": "../../node_modules/@web3auth/openlogin-adapter/dist/openloginAdapter.esm.js -> @toruslabs/openlogin-ed25519",
+    "files": [
+      "static/chunks/node_modules_toruslabs_openlogin-ed25519_dist_openloginEd25519_esm_js.js"
+    ]
+  },
+  "../../node_modules/@web3auth/openlogin-adapter/dist/openloginAdapter.esm.js -> @web3auth/ethereum-provider": {
+    "id": "../../node_modules/@web3auth/openlogin-adapter/dist/openloginAdapter.esm.js -> @web3auth/ethereum-provider",
+    "files": [
+      "static/chunks/node_modules_web3auth_ethereum-provider_dist_ethereumProvider_esm_js.js"
+    ]
+  },
+  "../../node_modules/@web3auth/openlogin-adapter/dist/openloginAdapter.esm.js -> @web3auth/solana-provider": {
+    "id": "../../node_modules/@web3auth/openlogin-adapter/dist/openloginAdapter.esm.js -> @web3auth/solana-provider",
+    "files": [
+      "static/chunks/node_modules_web3auth_solana-provider_dist_solanaProvider_esm_js.js"
+    ]
+  },
+  "../../node_modules/@web3auth/web3auth/dist/web3auth.esm.js -> @web3auth/metamask-adapter": {
+    "id": "../../node_modules/@web3auth/web3auth/dist/web3auth.esm.js -> @web3auth/metamask-adapter",
+    "files": [
+      "static/chunks/node_modules_web3auth_metamask-adapter_dist_metamaskAdapter_esm_js.js"
+    ]
+  },
+  "../../node_modules/@web3auth/web3auth/dist/web3auth.esm.js -> @web3auth/openlogin-adapter": {
+    "id": "../../node_modules/@web3auth/web3auth/dist/web3auth.esm.js -> @web3auth/openlogin-adapter",
+    "files": [
+      "static/chunks/node_modules_web3auth_openlogin-adapter_dist_openloginAdapter_esm_js.js"
+    ]
+  },
+  "../../node_modules/@web3auth/web3auth/dist/web3auth.esm.js -> @web3auth/phantom-adapter": {
+    "id": "../../node_modules/@web3auth/web3auth/dist/web3auth.esm.js -> @web3auth/phantom-adapter",
+    "files": [
+      "static/chunks/node_modules_web3auth_phantom-adapter_dist_phantomAdapter_esm_js.js"
+    ]
+  },
+  "../../node_modules/@web3auth/web3auth/dist/web3auth.esm.js -> @web3auth/torus-evm-adapter": {
+    "id": "../../node_modules/@web3auth/web3auth/dist/web3auth.esm.js -> @web3auth/torus-evm-adapter",
+    "files": [
+      "static/chunks/node_modules_web3auth_torus-evm-adapter_dist_torusEvmAdapter_esm_js.js"
+    ]
+  },
+  "../../node_modules/@web3auth/web3auth/dist/web3auth.esm.js -> @web3auth/torus-solana-adapter": {
+    "id": "../../node_modules/@web3auth/web3auth/dist/web3auth.esm.js -> @web3auth/torus-solana-adapter",
+    "files": [
+      "static/chunks/node_modules_web3auth_torus-solana-adapter_dist_torusSolanaAdapter_esm_js.js"
+    ]
+  },
+  "../../node_modules/@web3auth/web3auth/dist/web3auth.esm.js -> @web3auth/wallet-connect-v1-adapter": {
+    "id": "../../node_modules/@web3auth/web3auth/dist/web3auth.esm.js -> @web3auth/wallet-connect-v1-adapter",
+    "files": [
+      "static/chunks/node_modules_web3auth_wallet-connect-v1-adapter_dist_walletConnectV1Adapter_esm_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonColored.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonColored.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_ButtonColored_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonCustom.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonCustom.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_ButtonCustom_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonMoneyPrimary.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonMoneyPrimary.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_ButtonMoneyPrimary_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonOutline.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonOutline.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_ButtonOutline_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonPrimary.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonPrimary.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_ButtonPrimary_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonSecondary.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonSecondary.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_ButtonSecondary_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonTranslucent.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./ButtonTranslucent.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_ButtonTranslucent_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./aptos.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./aptos.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_aptos_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./arbitrum.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./arbitrum.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_arbitrum_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./avalanche.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./avalanche.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_avalanche_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./binance.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./binance.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_binance_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./coinbase.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./coinbase.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_coinbase_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./cronos.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./cronos.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_cronos_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./ethereum.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./ethereum.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_ethereum_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./fantom.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./fantom.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_fantom_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./harmony.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./harmony.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_harmony_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./optimism.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./optimism.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_optimism_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./palm.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./palm.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_palm_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./polygon.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./polygon.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_polygon_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./pulsechain.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./pulsechain.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_pulsechain_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/core/dist/index.js -> ./ronin.js": {
+    "id": "../../node_modules/@web3uikit/core/dist/index.js -> ./ronin.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_core_dist_ronin_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonColored.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonColored.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_ButtonColored_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonCustom.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonCustom.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_ButtonCustom_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonMoneyPrimary.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonMoneyPrimary.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_ButtonMoneyPrimary_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonOutline.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonOutline.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_ButtonOutline_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonPrimary.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonPrimary.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_ButtonPrimary_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonSecondary.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonSecondary.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_ButtonSecondary_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonTranslucent.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./ButtonTranslucent.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_ButtonTranslucent_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./aptos.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./aptos.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_aptos_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./arbitrum.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./arbitrum.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_arbitrum_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./avalanche.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./avalanche.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_avalanche_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./binance.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./binance.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_binance_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./coinbase.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./coinbase.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_coinbase_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./cronos.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./cronos.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_cronos_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./ethereum.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./ethereum.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_ethereum_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./fantom.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./fantom.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_fantom_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./optimism.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./optimism.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_optimism_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./palm.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./palm.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_palm_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./polygon.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./polygon.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_polygon_js.js"
+    ]
+  },
+  "../../node_modules/@web3uikit/web3/dist/index.js -> ./ronin.js": {
+    "id": "../../node_modules/@web3uikit/web3/dist/index.js -> ./ronin.js",
+    "files": [
+      "static/chunks/node_modules_web3uikit_web3_dist_ronin_js.js"
+    ]
+  }
+}
