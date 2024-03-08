@@ -1,7 +1,7 @@
 import { Form } from "@web3uikit/core";
 import { useMoralis, useWeb3Contract } from "react-moralis";
-import address from '../Constants/address.json';
-import abi from '../Constants/abi.json';
+import chainManagerAddresses from '../Constants-Professional/chainManagerAddresses.json';
+import chainManagerAbi from '../Constants-Professional/chainManagerAbi.json';
 import { useState } from "react";
 import { useNotification } from "@web3uikit/core";
 
@@ -10,26 +10,36 @@ export default function Body() {
   const { isWeb3Enabled, chainId: chainIdHex } = useMoralis();
   const buttonState = !isWeb3Enabled;
   const chainId = parseInt(chainIdHex);
-  const storageAddress = chainId in address ? address[chainId][0] : null;
+  const chainManagerAddress = chainId in chainManagerAddresses ? chainManagerAddresses[chainId][0] : null;
   const [storeData, setStoreData] = useState({
-    Name: '',
-    Job: '',
-    Experience: 0
+    FirstName: '',
+    LastName: '',
+    Field: '',
+    Education: '',
   });
   const dispatch = useNotification();
 
-  function handleChange (event) {
-    setStoreData(prevData => {
-      return {
+  console.log(storeData);
+  function handleChange(event) {
+    let name, value;
+
+    if (typeof event === 'object') {
+        name = event.target.name;
+        value = event.target.value;
+    } else {
+        name = event;
+        value = arguments[1];
+    }
+
+    setStoreData(prevData => ({
         ...prevData,
-        [event.target.name]: event.target.value
-      }
-    });
-  }
+        [name]: value
+    }));
+}
 
   const { runContractFunction: store } = useWeb3Contract({
-    abi: abi,
-    contractAddress: storageAddress,
+    abi: chainManagerAbi,
+    contractAddress: chainManagerAddress,
     functionName: "store",
     params: {
       _name: storeData.Name,
@@ -84,7 +94,7 @@ export default function Body() {
         data={[
           {
             inputWidth: '100%',
-            name: 'Name',
+            name: 'FirstName',
             type: 'text',
             validation: {
               required: true
@@ -93,7 +103,7 @@ export default function Body() {
           },
           {
             inputWidth: '100%',
-            name: 'Job',
+            name: 'LastName',
             type: 'text',
             validation: {
               required: true
@@ -101,11 +111,46 @@ export default function Body() {
             value: ''
           },
           {
-            name: 'Experience',
-            type: 'number',
+            inputWidth: '100%',
+            name: 'Field',
             validation: {
               required: true
             },
+            selectOptions: [
+              {
+                id: 'dev',
+                label: 'Developer'
+              },
+              {
+                id: 'marketing',
+                label: 'Marketing'
+              },
+              {
+                id: 'business',
+                label: 'Business'
+              }
+            ],
+            type: 'select',
+            value: ''
+          },
+          {
+            inputWidth: '100%',
+            name: 'Education',
+            validation: {
+              required: true
+            },
+            type: 'select',
+            selectOptions: [
+              {
+                id: 'bs',
+                label: 'Bachelors'
+              },
+              {
+                id: 'ms',
+                label: 'Masters'
+              }
+            ],
+            type: 'select',
             value: ''
           }]
         }

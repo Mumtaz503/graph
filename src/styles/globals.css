@@ -138,3 +138,14 @@ a {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+.right--side {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: space-between;
+}
+
+.right--side label {
+  cursor: pointer;
+}
