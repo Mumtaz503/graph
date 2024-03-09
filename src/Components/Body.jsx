@@ -1,7 +1,7 @@
 import { Form } from "@web3uikit/core";
 import { useMoralis, useWeb3Contract } from "react-moralis";
-import chainManagerAddresses from '../Constants-Professional/chainManagerAddresses.json';
-import chainManagerAbi from '../Constants-Professional/chainManagerAbi.json';
+import idTokenAbi from '../Constants-Professional/idTokenAbi.json';
+import idTokenAddresses from '../Constants-Professional/idTokenAddresses.json';
 import { useState } from "react";
 import { useNotification } from "@web3uikit/core";
 
@@ -10,7 +10,7 @@ export default function Body() {
   const { isWeb3Enabled, chainId: chainIdHex } = useMoralis();
   const buttonState = !isWeb3Enabled;
   const chainId = parseInt(chainIdHex);
-  const chainManagerAddress = chainId in chainManagerAddresses ? chainManagerAddresses[chainId][0] : null;
+  const idTokenAddress = chainId in idTokenAddresses ? idTokenAddresses[chainId][0] : null;
   const [storeData, setStoreData] = useState({
     FirstName: '',
     LastName: '',
@@ -18,33 +18,45 @@ export default function Body() {
     Education: '',
   });
   const dispatch = useNotification();
+  const svgData = `<svg width="300" height="150" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="100%" height="100%" fill="#f0f0f0"/>
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="20" fill="#333">
+    <tspan x="50%" dy="-20">First Name: ${storeData.FirstName}</tspan>
+    <tspan x="50%" dy="25">Last Name: ${storeData.LastName}</tspan>
+    <tspan x="50%" dy="25">Field: ${storeData.Field}</tspan>
+    <tspan x="50%" dy="25">Education: ${storeData.Education}</tspan>
+  </text>
+</svg>`;
 
-  console.log(storeData);
+  const extractName = (name) => {
+    const arr = name.split("_");
+    return arr[0];
+  };
+
+  console.log(svgData);
   function handleChange(event) {
+    // console.log(event.target);
     let name, value;
-
-    if (typeof event === 'object') {
-        name = event.target.name;
-        value = event.target.value;
-    } else {
-        name = event;
-        value = arguments[1];
+    if (event.target.nodeName === "INPUT") {
+      name = event.target.name;
+      value = event.target.value;
+    } else if (event.target.nodeName === "SELECT") {
+      name = extractName(event.target.id);
+      value = event.target.value;
     }
+    setStoreData({ ...storeData, [name]: value });
+  }
 
-    setStoreData(prevData => ({
-        ...prevData,
-        [name]: value
-    }));
-}
-
-  const { runContractFunction: store } = useWeb3Contract({
-    abi: chainManagerAbi,
-    contractAddress: chainManagerAddress,
-    functionName: "store",
+  const { runContractFunction: mintNft } = useWeb3Contract({
+    abi: idTokenAbi,
+    contractAddress: idTokenAddress,
+    functionName: "mintNft",
     params: {
-      _name: storeData.Name,
-      _job: storeData.Job,
-      _experience: storeData.Experience
+      _fName: storeData.FirstName,
+      _lName: storeData.LastName,
+      _field: storeData.Field,
+      _edu: storeData.Education,
+      _svg: svgData
     }
   });
 
@@ -84,7 +96,7 @@ export default function Body() {
       <Form
         buttonConfig={{
           onClick: async () => {
-            await store({
+            await mintNft({
               onSuccess: handleSuccess,
               onError: handleError,
             });
@@ -118,15 +130,15 @@ export default function Body() {
             },
             selectOptions: [
               {
-                id: 'dev',
+                id: 'Developer',
                 label: 'Developer'
               },
               {
-                id: 'marketing',
+                id: 'Marketing',
                 label: 'Marketing'
               },
               {
-                id: 'business',
+                id: 'Business',
                 label: 'Business'
               }
             ],
@@ -139,14 +151,13 @@ export default function Body() {
             validation: {
               required: true
             },
-            type: 'select',
             selectOptions: [
               {
-                id: 'bs',
+                id: 'Bachelors',
                 label: 'Bachelors'
               },
               {
-                id: 'ms',
+                id: 'Masters',
                 label: 'Masters'
               }
             ],

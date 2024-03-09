@@ -59,10 +59,10 @@ export default function Example() {
                             }
                         ],
                         type: 'select',
-                        value: `${storeData.BestZelda}`
+                        value: ''
                     }
                 ]}
-                onSubmit={handleChange}
+                onChange={handleChange}
                 title="Select thing"
             />
         </div>

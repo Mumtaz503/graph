@@ -6,7 +6,8 @@ import { MoralisProvider } from "react-moralis";
 import { NotificationProvider } from "@web3uikit/core";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { useRouter } from 'next/router';
-import Example from "@/Components/Example";
+import Dashboard from "./Dashboard";
+import CardBox from "@/Components/CardBox";
 
 
 const client = new ApolloClient({
@@ -26,9 +27,10 @@ export default function App({ Component, pageProps }) {
           <NavBar />
           {!isMarketplaceRoute && (
             <>
-              <Example />
-              {/* <Body /> */}
-              <ListComponent />
+              {/* <Body />
+              <ListComponent /> */}
+              <Dashboard />
+              {/* <CardBox /> */}
             </>
           )}
           <Component {...pageProps} />
