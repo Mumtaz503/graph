@@ -14,7 +14,7 @@ import EduVer from "@/Components/EduVer";
 
 const client = new ApolloClient({
   cache: new InMemoryCache,
-  uri: "https://api.studio.thegraph.com/query/65711/g-q-l/v0.0.1"
+  uri: "https://api.studio.thegraph.com/query/65711/pro-ind/v0.0.1"
 });
 
 export default function App({ Component, pageProps }) {
@@ -29,12 +29,11 @@ export default function App({ Component, pageProps }) {
           <NavBar />
           {!isMarketplaceRoute && (
             <>
-              {/* <Body />
-              <ListComponent /> */}
+              <Body />
               {/* <Dashboard /> */}
               {/* <CardBox /> */}
               {/* <StepperComponent /> */}
-              <EduVer />
+              {/* <EduVer /> */}
             </>
           )}
           <Component {...pageProps} />

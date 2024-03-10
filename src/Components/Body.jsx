@@ -2,12 +2,22 @@ import { Form } from "@web3uikit/core";
 import { useMoralis, useWeb3Contract } from "react-moralis";
 import idTokenAbi from '../Constants-Professional/idTokenAbi.json';
 import idTokenAddresses from '../Constants-Professional/idTokenAddresses.json';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNotification } from "@web3uikit/core";
+import { useQuery, gql } from "@apollo/client";
+
+const GET_USER_INFO = gql`
+{
+  idTokenMinteds(first: 100) {
+    professional_
+  }
+}
+`
 
 export default function Body() {
 
-  const { isWeb3Enabled, chainId: chainIdHex } = useMoralis();
+  const { isWeb3Enabled, chainId: chainIdHex, account, Moralis } = useMoralis();
+  const { loading, error, data } = useQuery(GET_USER_INFO);
   const buttonState = !isWeb3Enabled;
   const chainId = parseInt(chainIdHex);
   const idTokenAddress = chainId in idTokenAddresses ? idTokenAddresses[chainId][0] : null;
@@ -17,6 +27,7 @@ export default function Body() {
     Field: '',
     Education: '',
   });
+  const [isProfessionalPresent, setIsProfessionalPresent] = useState(false);
   const dispatch = useNotification();
   const svgData = `<svg width="300" height="150" xmlns="http://www.w3.org/2000/svg">
   <rect x="0" y="0" width="100%" height="100%" fill="#f0f0f0"/>
@@ -28,12 +39,55 @@ export default function Body() {
   </text>
 </svg>`;
 
+function checkProfessional(addr, loading, error, data, setIsProfessionalPresent) {
+  if (loading) {
+    console.log("Loading data...");
+    return;
+  }
+  if (error) {
+    console.error("Error fetching data:", error);
+    return;
+  }
+  if (!data || !data.idTokenMinteds) {
+    console.log("No data available");
+    return;
+  }
+
+  const { idTokenMinteds } = data;
+  const isProfessionalPresent = idTokenMinteds.some(item => item.professional_ === addr);
+
+  if (isProfessionalPresent) {
+    console.log("User present");
+    setIsProfessionalPresent(true);
+  } else {
+    console.log("User not present");
+    setIsProfessionalPresent(false);
+  }
+}
+
+useEffect(() => {
+  const checkProfessionalOnMount = async () => {
+    checkProfessional(account, loading, error, data, setIsProfessionalPresent);
+  };
+
+  checkProfessionalOnMount();
+
+  const accountChangedListener = Moralis.onAccountChanged(async (address) => {
+    checkProfessional(address, loading, error, data, setIsProfessionalPresent);
+  });
+
+  return () => {
+    accountChangedListener();
+  };
+}, [account, loading, error, data, setIsProfessionalPresent]);
+
+
   const extractName = (name) => {
     const arr = name.split("_");
     return arr[0];
   };
 
-  console.log(svgData);
+  // console.log(data);
   function handleChange(event) {
     // console.log(event.target);
     let name, value;
@@ -93,81 +147,83 @@ export default function Body() {
 
   return (
     <div className="form--button">
-      <Form
-        buttonConfig={{
-          onClick: async () => {
-            await mintNft({
-              onSuccess: handleSuccess,
-              onError: handleError,
-            });
-          },
-          theme: 'primary'
-        }}
-        data={[
-          {
-            inputWidth: '100%',
-            name: 'FirstName',
-            type: 'text',
-            validation: {
-              required: true
+      {isWeb3Enabled && isProfessionalPresent ? <p> Professional present </p> :
+        <Form
+          buttonConfig={{
+            onClick: async () => {
+              await mintNft({
+                onSuccess: handleSuccess,
+                onError: handleError,
+              });
             },
-            value: ''
-          },
-          {
-            inputWidth: '100%',
-            name: 'LastName',
-            type: 'text',
-            validation: {
-              required: true
-            },
-            value: ''
-          },
-          {
-            inputWidth: '100%',
-            name: 'Field',
-            validation: {
-              required: true
-            },
-            selectOptions: [
-              {
-                id: 'Developer',
-                label: 'Developer'
+            theme: 'primary'
+          }}
+          data={[
+            {
+              inputWidth: '100%',
+              name: 'FirstName',
+              type: 'text',
+              validation: {
+                required: true
               },
-              {
-                id: 'Marketing',
-                label: 'Marketing'
-              },
-              {
-                id: 'Business',
-                label: 'Business'
-              }
-            ],
-            type: 'select',
-            value: ''
-          },
-          {
-            inputWidth: '100%',
-            name: 'Education',
-            validation: {
-              required: true
+              value: ''
             },
-            selectOptions: [
-              {
-                id: 'Bachelors',
-                label: 'Bachelors'
+            {
+              inputWidth: '100%',
+              name: 'LastName',
+              type: 'text',
+              validation: {
+                required: true
               },
-              {
-                id: 'Masters',
-                label: 'Masters'
-              }
-            ],
-            type: 'select',
-            value: ''
-          }]
-        }
-        onChange={handleChange}
-        isDisabled={buttonState}
-      />
+              value: ''
+            },
+            {
+              inputWidth: '100%',
+              name: 'Field',
+              validation: {
+                required: true
+              },
+              selectOptions: [
+                {
+                  id: 'Developer',
+                  label: 'Developer'
+                },
+                {
+                  id: 'Marketing',
+                  label: 'Marketing'
+                },
+                {
+                  id: 'Business',
+                  label: 'Business'
+                }
+              ],
+              type: 'select',
+              value: ''
+            },
+            {
+              inputWidth: '100%',
+              name: 'Education',
+              validation: {
+                required: true
+              },
+              selectOptions: [
+                {
+                  id: 'Bachelors',
+                  label: 'Bachelors'
+                },
+                {
+                  id: 'Masters',
+                  label: 'Masters'
+                }
+              ],
+              type: 'select',
+              value: ''
+            }]
+          }
+          onChange={handleChange}
+          isDisabled={buttonState}
+        />
+      }
     </div>
   );
 }
