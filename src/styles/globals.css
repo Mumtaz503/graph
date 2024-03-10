@@ -223,3 +223,8 @@ a {
   align-items: center;
   justify-content: center;
 }
+
+
+.stepper {
+  margin-top: 100px;
+}

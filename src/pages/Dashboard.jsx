@@ -2,12 +2,13 @@ import { useState } from "react";
 import { useMoralis } from "react-moralis";
 import { useEffect } from "react";
 import CardBox from "@/Components/CardBox";
+import StepperComponent from "@/Components/StepperComponent";
 
 
 // You need to add a functionality where only the dashboard of the `account` is displayed
 // You need to add a functionality where in order to access the dashboard the user has to connect wallet
 export default function Dashboard() {
-    const { account } = useMoralis();
+    const { account, isWeb3Enabled } = useMoralis();
     const [display, setDisplay] = useState(null);
 
     const handleSidebarClick = (itemName) => {
@@ -26,8 +27,8 @@ export default function Dashboard() {
 
             </div>
             <div className="content">
-                {display === "professional id" && <CardBox tokenId={1}/>}
-                {display === "progress" && <h1>Your progress bar goes here {account}</h1>}
+                {display === "professional id" && <CardBox tokenId={1} isInMarketplace={false}/>}
+                {display === "progress" && <StepperComponent />}
                 {display === "edu ver" && <h1>Your Edu verification goes here {account}</h1>}
             </div>
         </div>

@@ -8,6 +8,8 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { useRouter } from 'next/router';
 import Dashboard from "./Dashboard";
 import CardBox from "@/Components/CardBox";
+import StepperComponent from "@/Components/StepperComponent";
+import EduVer from "@/Components/EduVer";
 
 
 const client = new ApolloClient({
@@ -29,8 +31,10 @@ export default function App({ Component, pageProps }) {
             <>
               {/* <Body />
               <ListComponent /> */}
-              <Dashboard />
+              {/* <Dashboard /> */}
               {/* <CardBox /> */}
+              {/* <StepperComponent /> */}
+              <EduVer />
             </>
           )}
           <Component {...pageProps} />
