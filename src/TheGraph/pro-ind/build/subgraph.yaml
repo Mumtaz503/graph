@@ -1,0 +1,47 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: IDToken
+    network: sepolia
+    source:
+      address: "0x8A81a9170B77e6e04233E33977A2B714e37382DA"
+      abi: IDToken
+      startBlock: 5456554
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - ApprovalForAll
+        - BatchMetadataUpdate
+        - EducationVerified
+        - IdTokenMinted
+        - MetadataUpdate
+        - StatsUpdated
+        - Transfer
+      abis:
+        - name: IDToken
+          file: IDToken/abis/IDToken.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: BatchMetadataUpdate(uint256,uint256)
+          handler: handleBatchMetadataUpdate
+        - event: EducationVerified(indexed address,indexed uint256,uint256)
+          handler: handleEducationVerified
+        - event: IdTokenMinted(indexed address,indexed uint256,string,string,string)
+          handler: handleIdTokenMinted
+        - event: MetadataUpdate(uint256)
+          handler: handleMetadataUpdate
+        - event: StatsUpdated(indexed address,indexed uint256,uint256)
+          handler: handleStatsUpdated
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: IDToken/IDToken.wasm
