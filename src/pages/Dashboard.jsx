@@ -27,7 +27,7 @@ export default function Dashboard() {
 
             </div>
             <div className="content">
-                {display === "professional id" && <CardBox tokenId={1} isInMarketplace={false}/>}
+                {display === "professional id" && <CardBox tokenId={0} isInMarketplace={false}/>}
                 {display === "progress" && <StepperComponent />}
                 {display === "edu ver" && <h1>Your Edu verification goes here {account}</h1>}
             </div>

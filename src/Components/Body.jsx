@@ -15,7 +15,6 @@ const GET_USER_INFO = gql`
 `
 
 export default function Body() {
-
   const { isWeb3Enabled, chainId: chainIdHex, account, Moralis } = useMoralis();
   const { loading, error, data } = useQuery(GET_USER_INFO);
   const buttonState = !isWeb3Enabled;
@@ -39,47 +38,47 @@ export default function Body() {
   </text>
 </svg>`;
 
-function checkProfessional(addr, loading, error, data, setIsProfessionalPresent) {
-  if (loading) {
-    console.log("Loading data...");
-    return;
+  function checkProfessional(addr, loading, error, data, setIsProfessionalPresent) {
+    if (loading) {
+      console.log("Loading data...");
+      return;
+    }
+    if (error) {
+      console.error("Error fetching data:", error);
+      return;
+    }
+    if (!data || !data.idTokenMinteds) {
+      console.log("No data available");
+      return;
+    }
+
+    const { idTokenMinteds } = data;
+    const isProfessionalPresent = idTokenMinteds.some(item => item.professional_ === addr);
+
+    if (isProfessionalPresent) {
+      console.log("User present");
+      setIsProfessionalPresent(true);
+    } else {
+      console.log("User not present");
+      setIsProfessionalPresent(false);
+    }
   }
-  if (error) {
-    console.error("Error fetching data:", error);
-    return;
-  }
-  if (!data || !data.idTokenMinteds) {
-    console.log("No data available");
-    return;
-  }
 
-  const { idTokenMinteds } = data;
-  const isProfessionalPresent = idTokenMinteds.some(item => item.professional_ === addr);
+  useEffect(() => {
+    const checkProfessionalOnMount = async () => {
+      checkProfessional(account, loading, error, data, setIsProfessionalPresent);
+    };
 
-  if (isProfessionalPresent) {
-    console.log("User present");
-    setIsProfessionalPresent(true);
-  } else {
-    console.log("User not present");
-    setIsProfessionalPresent(false);
-  }
-}
+    checkProfessionalOnMount();
 
-useEffect(() => {
-  const checkProfessionalOnMount = async () => {
-    checkProfessional(account, loading, error, data, setIsProfessionalPresent);
-  };
+    const accountChangedListener = Moralis.onAccountChanged(async (address) => {
+      checkProfessional(address, loading, error, data, setIsProfessionalPresent);
+    });
 
-  checkProfessionalOnMount();
-
-  const accountChangedListener = Moralis.onAccountChanged(async (address) => {
-    checkProfessional(address, loading, error, data, setIsProfessionalPresent);
-  });
-
-  return () => {
-    accountChangedListener();
-  };
-}, [account, loading, error, data, setIsProfessionalPresent]);
+    return () => {
+      accountChangedListener();
+    };
+  }, [account, loading, error, data, setIsProfessionalPresent]);
 
 
   const extractName = (name) => {
@@ -147,7 +146,7 @@ useEffect(() => {
 
   return (
     <div className="form--button">
-      {isWeb3Enabled && isProfessionalPresent ? <p> Professional present </p> :
+      {isWeb3Enabled && isProfessionalPresent ? <p>User already registered</p> :
         <Form
           buttonConfig={{
             onClick: async () => {

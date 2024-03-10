@@ -30,10 +30,6 @@ export default function App({ Component, pageProps }) {
           {!isMarketplaceRoute && (
             <>
               <Body />
-              {/* <Dashboard /> */}
-              {/* <CardBox /> */}
-              {/* <StepperComponent /> */}
-              {/* <EduVer /> */}
             </>
           )}
           <Component {...pageProps} />
