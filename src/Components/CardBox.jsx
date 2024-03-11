@@ -9,6 +9,7 @@ import idTokenAddresses from '../Constants-Professional/idTokenAddresses.json';
 // Add a functionality where the hire me button only appears if the card is in marketplace
 // You need to pass a prop called "isInMarketPlace"
 export default function CardBox({ tokenId, isInMarketplace }) {
+    const userTokenId = tokenId[0];
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [field, setField] = useState("");
@@ -20,12 +21,14 @@ export default function CardBox({ tokenId, isInMarketplace }) {
     const chainId = parseInt(chainIdHex);
     const idTokenAddress = chainId in idTokenAddresses ? idTokenAddresses[chainId][0] : null;
 
+    console.log(userTokenId);
+
     const { runContractFunction: getTokenURI } = useWeb3Contract({
         abi: idTokenAbi,
         contractAddress: idTokenAddress,
         functionName: "tokenURI",
         params: {
-            _tokenId: tokenId
+            _tokenId: userTokenId
         }
     });
 

@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
 import NavBar from "../Components/NavBar";
-import Body from "@/Components/Body";
-import ListComponent from "@/Components/ListComponent";
+import Body from "@/pages/Body";
 import { MoralisProvider } from "react-moralis";
 import { NotificationProvider } from "@web3uikit/core";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
@@ -10,6 +9,7 @@ import Dashboard from "./Dashboard";
 import CardBox from "@/Components/CardBox";
 import StepperComponent from "@/Components/StepperComponent";
 import EduVer from "@/Components/EduVer";
+import Marketplace from "./Marketplace";
 
 
 const client = new ApolloClient({
@@ -20,25 +20,29 @@ const client = new ApolloClient({
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   const isMarketplaceRoute = router.pathname === '/Marketplace';
+  const isDashboardRoute = router.pathname === '/Dashboard';
+  const isBodyRoute = router.pathname === '/Body';
   return (
     <MoralisProvider initializeOnMount={false}>
       <ApolloProvider client={client}>
-      <div>
         <NotificationProvider>
           <div>
-          <NavBar />
-          {!isMarketplaceRoute && (
-            <>
+            <NavBar />
+            {isDashboardRoute ? (
+              <Dashboard />
+            ) : isBodyRoute ? (
               <Body />
-              {/* <Dashboard /> */}
-            </>
-          )}
-          <Component {...pageProps} />
+            ) : isMarketplaceRoute ? (
+              <Marketplace />
+            ) : (
+              <>
+                <Body />
+                <Component {...pageProps} />
+              </>
+            )}
           </div>
         </NotificationProvider>
-      </div>
       </ApolloProvider>
     </MoralisProvider>
-    
   );
 }

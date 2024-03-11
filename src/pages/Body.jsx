@@ -5,6 +5,7 @@ import idTokenAddresses from '../Constants-Professional/idTokenAddresses.json';
 import { useEffect, useState } from "react";
 import { useNotification } from "@web3uikit/core";
 import { useQuery, gql } from "@apollo/client";
+import { useRouter } from "next/router";
 
 const GET_USER_INFO = gql`
 {
@@ -15,6 +16,7 @@ const GET_USER_INFO = gql`
 `
 
 export default function Body() {
+  const router = useRouter();
   const { isWeb3Enabled, chainId: chainIdHex, account, Moralis } = useMoralis();
   const { loading, error, data } = useQuery(GET_USER_INFO);
   const buttonState = !isWeb3Enabled;
@@ -144,85 +146,107 @@ export default function Body() {
     });
   }
 
+  // if (isWeb3Enabled && isProfessionalPresent) {
+  //   router.push('/Dashboard');
+  //   return null;
+  // }
+
+  const handleDashboardRoute = () => {
+    router.push('/Dashboard');
+  }
+
   return (
     <div className="form--button">
-      {isWeb3Enabled && isProfessionalPresent ? <p>User already registered</p> :
-        <Form
-          buttonConfig={{
-            onClick: async () => {
-              await mintNft({
-                onSuccess: handleSuccess,
-                onError: handleError,
-              });
+      {
+        isWeb3Enabled && isProfessionalPresent ? 
+        
+          <label 
+            onClick={handleDashboardRoute}
+            style={{
+              cursor: "pointer"
+            }}
+          
+          >You're registered visit your dashboard by clicking here</label>
+          
+          :
+
+          
+      <Form
+        buttonConfig={{
+          onClick: async () => {
+            await mintNft({
+              onSuccess: handleSuccess,
+              onError: handleError,
+            });
+          },
+          theme: 'primary'
+        }}
+        data={[
+          {
+            inputWidth: '100%',
+            name: 'FirstName',
+            type: 'text',
+            validation: {
+              required: true
             },
-            theme: 'primary'
-          }}
-          data={[
-            {
-              inputWidth: '100%',
-              name: 'FirstName',
-              type: 'text',
-              validation: {
-                required: true
-              },
-              value: ''
+            value: ''
+          },
+          {
+            inputWidth: '100%',
+            name: 'LastName',
+            type: 'text',
+            validation: {
+              required: true
             },
-            {
-              inputWidth: '100%',
-              name: 'LastName',
-              type: 'text',
-              validation: {
-                required: true
-              },
-              value: ''
+            value: ''
+          },
+          {
+            inputWidth: '100%',
+            name: 'Field',
+            validation: {
+              required: true
             },
-            {
-              inputWidth: '100%',
-              name: 'Field',
-              validation: {
-                required: true
+            selectOptions: [
+              {
+                id: 'Developer',
+                label: 'Developer'
               },
-              selectOptions: [
-                {
-                  id: 'Developer',
-                  label: 'Developer'
-                },
-                {
-                  id: 'Marketing',
-                  label: 'Marketing'
-                },
-                {
-                  id: 'Business',
-                  label: 'Business'
-                }
-              ],
-              type: 'select',
-              value: ''
+              {
+                id: 'Marketing',
+                label: 'Marketing'
+              },
+              {
+                id: 'Business',
+                label: 'Business'
+              }
+            ],
+            type: 'select',
+            value: ''
+          },
+          {
+            inputWidth: '100%',
+            name: 'Education',
+            validation: {
+              required: true
             },
-            {
-              inputWidth: '100%',
-              name: 'Education',
-              validation: {
-                required: true
+            selectOptions: [
+              {
+                id: 'Bachelors',
+                label: 'Bachelors'
               },
-              selectOptions: [
-                {
-                  id: 'Bachelors',
-                  label: 'Bachelors'
-                },
-                {
-                  id: 'Masters',
-                  label: 'Masters'
-                }
-              ],
-              type: 'select',
-              value: ''
-            }]
-          }
-          onChange={handleChange}
-          isDisabled={buttonState}
-        />
-      }
+              {
+                id: 'Masters',
+                label: 'Masters'
+              }
+            ],
+            type: 'select',
+            value: ''
+          }]
+        }
+        onChange={handleChange}
+        isDisabled={buttonState}
+      />
+    }
     </div>
   );
 }
