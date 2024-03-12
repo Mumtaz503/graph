@@ -1,13 +1,10 @@
 import { useWeb3Contract, useMoralis } from "react-moralis";
 import { useState, useEffect } from "react";
-import { Button } from "@web3uikit/core";
+import { Button, Loading } from "@web3uikit/core";
 import Image from "next/image";
 import idTokenAbi from '../Constants-Professional/idTokenAbi.json';
 import idTokenAddresses from '../Constants-Professional/idTokenAddresses.json';
 
-
-// Add a functionality where the hire me button only appears if the card is in marketplace
-// You need to pass a prop called "isInMarketPlace"
 export default function CardBox({ tokenId, isInMarketplace }) {
     const userTokenId = tokenId[0];
     const [firstName, setFirstName] = useState("");
@@ -20,8 +17,6 @@ export default function CardBox({ tokenId, isInMarketplace }) {
     const { isWeb3Enabled, chainId: chainIdHex } = useMoralis();
     const chainId = parseInt(chainIdHex);
     const idTokenAddress = chainId in idTokenAddresses ? idTokenAddresses[chainId][0] : null;
-
-    console.log(userTokenId);
 
     const { runContractFunction: getTokenURI } = useWeb3Contract({
         abi: idTokenAbi,
@@ -63,7 +58,8 @@ export default function CardBox({ tokenId, isInMarketplace }) {
         if (isWeb3Enabled) {
             updateUI();
         }
-    }, [isWeb3Enabled])
+    }, [isWeb3Enabled]);
+
     return (
         <div>
             {imageURI ? (
@@ -96,11 +92,25 @@ export default function CardBox({ tokenId, isInMarketplace }) {
                         <label>Work Experience Points: {experience}</label>
                     </div>
                     <div className="button">
-                        {isInMarketplace ? <Button text="Hire Me!" color='blue' theme="primary" /> : null}
+                        {isInMarketplace ? <Button text="Reward User" color='blue' theme="primary" /> : null}
                     </div>
                 </div>
             ) :
-                <div>Loading ID please wait...</div>
+                <div
+                    style={{
+                        backgroundColor: '#0000',
+                        borderRadius: '8px',
+                        padding: '20px',
+                    }}
+                >
+                    <Loading
+                        fontSize={12}
+                        size={12}
+                        spinnerColor="#FFF"
+                        spinnerType="loader"
+                        text="Loading ID..."
+                    />
+                </div>
             }
         </div>
     )

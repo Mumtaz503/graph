@@ -1,4 +1,4 @@
-import { Form } from "@web3uikit/core";
+import { Form, Loading, BannerStrip, Button } from "@web3uikit/core";
 import { useMoralis, useWeb3Contract } from "react-moralis";
 import idTokenAbi from '../Constants-Professional/idTokenAbi.json';
 import idTokenAddresses from '../Constants-Professional/idTokenAddresses.json';
@@ -13,7 +13,7 @@ const GET_USER_INFO = gql`
     professional_
   }
 }
-`
+`;
 
 export default function Body() {
   const router = useRouter();
@@ -156,97 +156,138 @@ export default function Body() {
   }
 
   return (
-    <div className="form--button">
-      {
-        isWeb3Enabled && isProfessionalPresent ? 
-        
-          <label 
-            onClick={handleDashboardRoute}
-            style={{
-              cursor: "pointer"
-            }}
-          
-          >You're registered visit your dashboard by clicking here</label>
-          
-          :
+    <div>
+      {loading ? (
+        <div
+          style={{
+            backgroundColor: '#0000',
+            borderRadius: '8px',
+            padding: '20px',
+            marginLeft: 600
+          }}
+        >
+          <Loading
+            fontSize={12}
+            size={12}
+            spinnerColor="#FFF"
+            spinnerType="wave"
+            text=""
+          />
+        </div>
+      ) :
+        (
+          <div className="form--button">
+            {
+              isWeb3Enabled && isProfessionalPresent ?
 
-          
-      <Form
-        buttonConfig={{
-          onClick: async () => {
-            await mintNft({
-              onSuccess: handleSuccess,
-              onError: handleError,
-            });
-          },
-          theme: 'primary'
-        }}
-        data={[
-          {
-            inputWidth: '100%',
-            name: 'FirstName',
-            type: 'text',
-            validation: {
-              required: true
-            },
-            value: ''
-          },
-          {
-            inputWidth: '100%',
-            name: 'LastName',
-            type: 'text',
-            validation: {
-              required: true
-            },
-            value: ''
-          },
-          {
-            inputWidth: '100%',
-            name: 'Field',
-            validation: {
-              required: true
-            },
-            selectOptions: [
-              {
-                id: 'Developer',
-                label: 'Developer'
-              },
-              {
-                id: 'Marketing',
-                label: 'Marketing'
-              },
-              {
-                id: 'Business',
-                label: 'Business'
-              }
-            ],
-            type: 'select',
-            value: ''
-          },
-          {
-            inputWidth: '100%',
-            name: 'Education',
-            validation: {
-              required: true
-            },
-            selectOptions: [
-              {
-                id: 'Bachelors',
-                label: 'Bachelors'
-              },
-              {
-                id: 'Masters',
-                label: 'Masters'
-              }
-            ],
-            type: 'select',
-            value: ''
-          }]
-        }
-        onChange={handleChange}
-        isDisabled={buttonState}
-      />
-    }
+                <div
+                  key="1"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: "center",
+                    transform: 'scale(1)',
+                    width: 400,
+                    height: 100,
+                    marginTop: 50,
+                    backgroundColor: '#f3f3f3',
+                  }}
+                >
+                  <BannerStrip
+                    isCloseBtnVisible={false}
+                    text="You've Already registered..."
+                    type="success"
+                  />
+                  <Button
+                    onClick={handleDashboardRoute}
+                    style={{
+                      marginTop: '50px'
+                    }}
+                    text="Visit your Dashboard"
+                    theme="outline"
+                  />
+                </div>
+
+                :
+
+                <Form
+                  buttonConfig={{
+                    onClick: async () => {
+                      await mintNft({
+                        onSuccess: handleSuccess,
+                        onError: handleError,
+                      });
+                    },
+                    theme: 'primary'
+                  }}
+                  data={[
+                    {
+                      inputWidth: '100%',
+                      name: 'FirstName',
+                      type: 'text',
+                      validation: {
+                        required: true
+                      },
+                      value: ''
+                    },
+                    {
+                      inputWidth: '100%',
+                      name: 'LastName',
+                      type: 'text',
+                      validation: {
+                        required: true
+                      },
+                      value: ''
+                    },
+                    {
+                      inputWidth: '100%',
+                      name: 'Field',
+                      validation: {
+                        required: true
+                      },
+                      selectOptions: [
+                        {
+                          id: 'Developer',
+                          label: 'Developer'
+                        },
+                        {
+                          id: 'Marketing',
+                          label: 'Marketing'
+                        },
+                        {
+                          id: 'Business',
+                          label: 'Business'
+                        }
+                      ],
+                      type: 'select',
+                      value: ''
+                    },
+                    {
+                      inputWidth: '100%',
+                      name: 'Education',
+                      validation: {
+                        required: true
+                      },
+                      selectOptions: [
+                        {
+                          id: 'Bachelors',
+                          label: 'Bachelors'
+                        },
+                        {
+                          id: 'Masters',
+                          label: 'Masters'
+                        }
+                      ],
+                      type: 'select',
+                      value: ''
+                    }]
+                  }
+                  onChange={handleChange}
+                  isDisabled={buttonState}
+                />
+            }
+          </div>)
+      }
     </div>
   );
 }

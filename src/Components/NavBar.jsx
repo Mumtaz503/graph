@@ -16,7 +16,7 @@ export default function NavBar () {
                 <label onClick={handleClick}>
                     Marketplace
                 </label>
-                <ConnectButton />
+                <ConnectButton chainId={11155111} />
             </div>
         </nav>
     );

@@ -173,11 +173,8 @@ a {
 
 .sidebar ul li a {
   text-decoration: none;
-  /* Remove underline from links */
   color: #ffffff;
-  /* Set text color */
   display: block;
-  /* Display links as block elements */
 }
 
 .content {
@@ -230,5 +227,5 @@ a {
 }
 
 .color {
-  background-color: #02ffc0;
+  background-color: #f3f3f3;
 }
