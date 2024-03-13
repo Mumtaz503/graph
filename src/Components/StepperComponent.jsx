@@ -1,4 +1,4 @@
-import { Stepper } from "@web3uikit/core";
+import { Slider } from "@web3uikit/core";
 import idTokenAbi from '../Constants-Professional/idTokenAbi.json';
 import idTokenAddresses from '../Constants-Professional/idTokenAddresses.json';
 import { useWeb3Contract, useMoralis } from "react-moralis";
@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export default function StepperComponent({ tokenId }) {
     const userTokenId = tokenId[0];
-    const [eduVerificationVal, setEduVerificationVal] = useState(0);
+    const [stepperNum, setStepperNum] = useState(0);
     const { isWeb3Enabled, chainId: chainIdHex } = useMoralis();
     const chainId = parseInt(chainIdHex);
     const idTokenAddress = chainId in idTokenAddresses ? idTokenAddresses[chainId][0] : null;
@@ -31,23 +31,21 @@ export default function StepperComponent({ tokenId }) {
             const jsonString = atob(base64EncodedString);
             const jsonObj = JSON.parse(jsonString);
             const eduVer = jsonObj.attributes[1].value;
-            setEduVerificationVal(eduVer);
+
+            if (eduVer === 100) {
+                setStepperNum(1000);
+            } else {
+                setStepperNum(500);
+            }
         }
     }
+
 
     useEffect(() => {
         if (isWeb3Enabled) {
             setStepper();
         }
-    }, [isWeb3Enabled])
-
-    const stepperNum = () => {
-        if (eduVerificationVal === 0) {
-            return 2
-        } else if (eduVerificationVal === 100) {
-            return 3
-        }
-    }
+    }, [isWeb3Enabled]);
 
     return (
         <div className="stepper">
@@ -55,32 +53,25 @@ export default function StepperComponent({ tokenId }) {
                 style={{
                     height: '1px',
                     minHeight: '450px',
-                    fontSize: '10'
+                    width: '700px',
+                    fontSize: '10',
+                    marginLeft: '170px',
+                    paddingTop: '50px'
                 }}
             >
-                <Stepper
-                    contentPadding="100px"
-                    onComplete={function noRefCheck() { }}
-                    onNext={function noRefCheck() { }}
-                    onPrev={function noRefCheck() { }}
-                    orientation="vertical"
-                    step={stepperNum}
-                    hasNavButtons={false}
-                    stepperWidth={400}
-                    stepData={[
-                        {
-                            content: <div style={{ display: 'block', textAlign: 'left', width: '100%', color: 'beige' }}>Registration</div>,
-                            stepTitle: 'Register'
-                        },
-                        {
-                            content: <div style={{ display: 'block', textAlign: 'left', width: '100%', color: 'beige' }}>Education Verification Required</div>,
-                            stepTitle: 'Verify Education'
-                        },
-                        {
-                            content: <div style={{ display: 'block', textAlign: 'left', width: '100%', color: 'beige' }}>Got Hired!!</div>,
-                            stepTitle: 'Get hired'
-                        }
+                <Slider
+                    disabled
+                    max={1000}
+                    min={0}
+                    onChange={function noRefCheck() { }}
+                    value={stepperNum}
+                    markers={[
+                        <h3>Register</h3>,
+                        <h3>Education Verification</h3>,
+                        <h3>Get Hired</h3>
                     ]}
+                    bgColor="#00ffff"
+                    labelBgColor="#000000"
                 />
             </div>
         </div>

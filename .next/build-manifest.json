@@ -17,6 +17,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
+    "/Body": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/Body.js"
+    ],
     "/Dashboard": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
