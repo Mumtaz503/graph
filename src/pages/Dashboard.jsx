@@ -3,6 +3,7 @@ import { useMoralis } from "react-moralis";
 import { useEffect } from "react";
 import CardBox from "@/Components/CardBox";
 import StepperComponent from "@/Components/StepperComponent";
+import EduVer from "@/Components/EduVer";
 import { useQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import { Loading, BannerStrip, Button } from "@web3uikit/core";
@@ -119,7 +120,7 @@ export default function Dashboard() {
                                     {/* {<p>Token id is: {tokenID}</p>} */}
                                     {display === "professional id" && <CardBox tokenId={tokenId} isInMarketplace={false} />}
                                     {display === "progress" && <StepperComponent tokenId={tokenId} />}
-                                    {display === "edu ver" && <h1>Your Edu verification goes here {account}</h1>}
+                                    {display === "edu ver" && <EduVer tokenId={tokenId} />}
                                 </div>
                             </div>
                             :

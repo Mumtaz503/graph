@@ -229,3 +229,13 @@ a {
 .color {
   background-color: #f3f3f3;
 }
+
+.footer {
+  height: 100px;
+  background-color: #04e0e0;
+}
+
+.edu--ver {
+  font-family: 'Karla', sans-serif;
+  
+}

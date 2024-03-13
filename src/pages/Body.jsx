@@ -115,10 +115,15 @@ export default function Body() {
     }
   });
 
+  const handleDashboardRoute = () => {
+    router.push('/Dashboard');
+  }
+
   const handleSuccess = async (tx) => {
     try {
       await tx.wait(1);
       handleSuccessNotification(tx);
+      handleDashboardRoute;
     } catch (err) {
       console.log(err);
     }
@@ -144,15 +149,6 @@ export default function Body() {
       title: "Error",
       position: "topR",
     });
-  }
-
-  // if (isWeb3Enabled && isProfessionalPresent) {
-  //   router.push('/Dashboard');
-  //   return null;
-  // }
-
-  const handleDashboardRoute = () => {
-    router.push('/Dashboard');
   }
 
   return (

@@ -6,9 +6,6 @@ import { NotificationProvider } from "@web3uikit/core";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { useRouter } from 'next/router';
 import Dashboard from "./Dashboard";
-import CardBox from "@/Components/CardBox";
-import StepperComponent from "@/Components/StepperComponent";
-import EduVer from "@/Components/EduVer";
 import Marketplace from "./Marketplace";
 
 
