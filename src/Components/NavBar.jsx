@@ -10,7 +10,7 @@ export default function NavBar () {
     return (
         <nav className="nav--bar">
             <h1>
-                Pro-Block
+                Top Talent Chain
             </h1>
             <div className="right--side">
                 <label onClick={handleClick}>

@@ -1,18 +1,18 @@
 import { Form, Loading, BannerStrip, Button } from "@web3uikit/core";
 import { useMoralis, useWeb3Contract } from "react-moralis";
-import idTokenAbi from '../Constants-Professional/idTokenAbi.json';
-import idTokenAddresses from '../Constants-Professional/idTokenAddresses.json';
+import idTokenAbi from "../Constants-Professional/idTokenAbi.json";
+import idTokenAddresses from "../Constants-Professional/idTokenAddresses.json";
 import { useEffect, useState } from "react";
 import { useNotification } from "@web3uikit/core";
 import { useQuery, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 
 const GET_USER_INFO = gql`
-{
-  idTokenMinteds(first: 100) {
-    professional_
+  {
+    idTokenMinteds(first: 100) {
+      professional_
+    }
   }
-}
 `;
 
 export default function Body() {
@@ -21,12 +21,13 @@ export default function Body() {
   const { loading, error, data } = useQuery(GET_USER_INFO);
   const buttonState = !isWeb3Enabled;
   const chainId = parseInt(chainIdHex);
-  const idTokenAddress = chainId in idTokenAddresses ? idTokenAddresses[chainId][0] : null;
+  const idTokenAddress =
+    chainId in idTokenAddresses ? idTokenAddresses[chainId][0] : null;
   const [storeData, setStoreData] = useState({
-    FirstName: '',
-    LastName: '',
-    Field: '',
-    Education: '',
+    FirstName: "",
+    LastName: "",
+    Field: "",
+    Education: "",
   });
   const [isProfessionalPresent, setIsProfessionalPresent] = useState(false);
   const dispatch = useNotification();
@@ -40,7 +41,13 @@ export default function Body() {
   </text>
 </svg>`;
 
-  function checkProfessional(addr, loading, error, data, setIsProfessionalPresent) {
+  function checkProfessional(
+    addr,
+    loading,
+    error,
+    data,
+    setIsProfessionalPresent
+  ) {
     if (loading) {
       console.log("Loading data...");
       return;
@@ -55,7 +62,9 @@ export default function Body() {
     }
 
     const { idTokenMinteds } = data;
-    const isProfessionalPresent = idTokenMinteds.some(item => item.professional_ === addr);
+    const isProfessionalPresent = idTokenMinteds.some(
+      (item) => item.professional_ === addr
+    );
 
     if (isProfessionalPresent) {
       console.log("User present");
@@ -68,20 +77,31 @@ export default function Body() {
 
   useEffect(() => {
     const checkProfessionalOnMount = async () => {
-      checkProfessional(account, loading, error, data, setIsProfessionalPresent);
+      checkProfessional(
+        account,
+        loading,
+        error,
+        data,
+        setIsProfessionalPresent
+      );
     };
 
     checkProfessionalOnMount();
 
     const accountChangedListener = Moralis.onAccountChanged(async (address) => {
-      checkProfessional(address, loading, error, data, setIsProfessionalPresent);
+      checkProfessional(
+        address,
+        loading,
+        error,
+        data,
+        setIsProfessionalPresent
+      );
     });
 
     return () => {
       accountChangedListener();
     };
   }, [account, loading, error, data, setIsProfessionalPresent]);
-
 
   const extractName = (name) => {
     const arr = name.split("_");
@@ -111,13 +131,13 @@ export default function Body() {
       _lName: storeData.LastName,
       _field: storeData.Field,
       _edu: storeData.Education,
-      _svg: svgData
-    }
+      _svg: svgData,
+    },
   });
 
   const handleDashboardRoute = () => {
-    router.push('/Dashboard');
-  }
+    router.push("/Dashboard");
+  };
 
   const handleSuccess = async (tx) => {
     try {
@@ -127,20 +147,20 @@ export default function Body() {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   const handleSuccessNotification = () => {
     dispatch({
       type: "success",
       message: "Info Added succesfully",
       title: "Success",
-      position: "topR"
+      position: "topR",
     });
-  }
+  };
 
   const handleError = (tx) => {
     handleErrorNotification(tx);
-  }
+  };
 
   const handleErrorNotification = (tx) => {
     dispatch({
@@ -149,17 +169,17 @@ export default function Body() {
       title: "Error",
       position: "topR",
     });
-  }
+  };
 
   return (
     <div>
       {loading ? (
         <div
           style={{
-            backgroundColor: '#0000',
-            borderRadius: '8px',
-            padding: '20px',
-            marginLeft: 600
+            backgroundColor: "#0000",
+            borderRadius: "8px",
+            padding: "20px",
+            marginLeft: 600,
           }}
         >
           <Loading
@@ -170,120 +190,115 @@ export default function Body() {
             text=""
           />
         </div>
-      ) :
-        (
-          <div className="form--button">
-            {
-              isWeb3Enabled && isProfessionalPresent ?
-
-                <div
-                  key="1"
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: "center",
-                    transform: 'scale(1)',
-                    width: 400,
-                    height: 100,
-                    marginTop: 50,
-                    backgroundColor: '#f3f3f3',
-                  }}
-                >
-                  <BannerStrip
-                    isCloseBtnVisible={false}
-                    text="You've Already registered..."
-                    type="success"
-                  />
-                  <Button
-                    onClick={handleDashboardRoute}
-                    style={{
-                      marginTop: '50px'
-                    }}
-                    text="Visit your Dashboard"
-                    theme="outline"
-                  />
-                </div>
-
-                :
-
-                <Form
-                  buttonConfig={{
-                    onClick: async () => {
-                      await mintNft({
-                        onSuccess: handleSuccess,
-                        onError: handleError,
-                      });
-                    },
-                    theme: 'primary'
-                  }}
-                  data={[
+      ) : (
+        <div className="form--button">
+          {isWeb3Enabled && isProfessionalPresent ? (
+            <div
+              key="1"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                transform: "scale(1)",
+                width: 400,
+                height: 100,
+                marginTop: 50,
+                backgroundColor: "#f3f3f3",
+              }}
+            >
+              <BannerStrip
+                isCloseBtnVisible={false}
+                text="You've Already registered..."
+                type="success"
+              />
+              <Button
+                onClick={handleDashboardRoute}
+                style={{
+                  marginTop: "50px",
+                }}
+                text="Visit your Dashboard"
+                theme="outline"
+              />
+            </div>
+          ) : (
+            <Form
+              buttonConfig={{
+                onClick: async () => {
+                  await mintNft({
+                    onSuccess: handleSuccess,
+                    onError: handleError,
+                  });
+                },
+                theme: "primary",
+              }}
+              data={[
+                {
+                  inputWidth: "100%",
+                  name: "FirstName",
+                  type: "text",
+                  validation: {
+                    required: true,
+                  },
+                  value: "",
+                },
+                {
+                  inputWidth: "100%",
+                  name: "LastName",
+                  type: "text",
+                  validation: {
+                    required: true,
+                  },
+                  value: "",
+                },
+                {
+                  inputWidth: "100%",
+                  name: "Field",
+                  validation: {
+                    required: true,
+                  },
+                  selectOptions: [
                     {
-                      inputWidth: '100%',
-                      name: 'FirstName',
-                      type: 'text',
-                      validation: {
-                        required: true
-                      },
-                      value: ''
-                    },
-                    {
-                      inputWidth: '100%',
-                      name: 'LastName',
-                      type: 'text',
-                      validation: {
-                        required: true
-                      },
-                      value: ''
-                    },
-                    {
-                      inputWidth: '100%',
-                      name: 'Field',
-                      validation: {
-                        required: true
-                      },
-                      selectOptions: [
-                        {
-                          id: 'Developer',
-                          label: 'Developer'
-                        },
-                        {
-                          id: 'Marketing',
-                          label: 'Marketing'
-                        },
-                        {
-                          id: 'Business',
-                          label: 'Business'
-                        }
-                      ],
-                      type: 'select',
-                      value: ''
+                      id: "Developer",
+                      label: "Developer",
                     },
                     {
-                      inputWidth: '100%',
-                      name: 'Education',
-                      validation: {
-                        required: true
-                      },
-                      selectOptions: [
-                        {
-                          id: 'Bachelors',
-                          label: 'Bachelors'
-                        },
-                        {
-                          id: 'Masters',
-                          label: 'Masters'
-                        }
-                      ],
-                      type: 'select',
-                      value: ''
-                    }]
-                  }
-                  onChange={handleChange}
-                  isDisabled={buttonState}
-                />
-            }
-          </div>)
-      }
+                      id: "Marketing",
+                      label: "Marketing",
+                    },
+                    {
+                      id: "Business",
+                      label: "Business",
+                    },
+                  ],
+                  type: "select",
+                  value: "",
+                },
+                {
+                  inputWidth: "100%",
+                  name: "Education",
+                  validation: {
+                    required: true,
+                  },
+                  selectOptions: [
+                    {
+                      id: "Bachelors",
+                      label: "Bachelors",
+                    },
+                    {
+                      id: "Masters",
+                      label: "Masters",
+                    },
+                  ],
+                  type: "select",
+                  value: "",
+                },
+              ]}
+              onChange={handleChange}
+              isDisabled={buttonState}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 }
