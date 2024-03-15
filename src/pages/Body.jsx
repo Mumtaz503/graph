@@ -31,15 +31,13 @@ export default function Body() {
   });
   const [isProfessionalPresent, setIsProfessionalPresent] = useState(false);
   const dispatch = useNotification();
-  const svgData = `<svg width="300" height="150" xmlns="http://www.w3.org/2000/svg">
-  <rect x="0" y="0" width="100%" height="100%" fill="#f0f0f0"/>
-  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-size="20" fill="#333">
-    <tspan x="50%" dy="-20">First Name: ${storeData.FirstName}</tspan>
-    <tspan x="50%" dy="25">Last Name: ${storeData.LastName}</tspan>
-    <tspan x="50%" dy="25">Field: ${storeData.Field}</tspan>
-    <tspan x="50%" dy="25">Education: ${storeData.Education}</tspan>
-  </text>
-</svg>`;
+  const svgData = `<svg width="200" height="100" xmlns="http://www.w3.org/2000/svg">
+  <text x="10" y="20">${storeData.FirstName}</text>
+  <text x="10" y="40">${storeData.LastName}</text>
+  <text x="10" y="60">${storeData.Field}</text>
+  <text x="10" y="80">${storeData.Education}</text>
+</svg>
+`;
 
   function checkProfessional(
     addr,
