@@ -335,7 +335,6 @@ export default function EduVer({ tokenId }) {
                 border: "1px solid white",
                 borderRadius: "10px",
                 color: "#FFFFFF",
-                margin: "60px",
                 padding: "10px",
                 gap: "10px",
               }}

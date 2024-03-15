@@ -6,7 +6,7 @@ export default function List(props) {
   console.log("Data Array is");
   console.log(dataArray);
   return (
-    <div>
+    <div className="cardbox--pagination">
       <CardBox tokenId={dataArray} isInMarketplace={true} />
     </div>
   );

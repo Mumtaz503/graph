@@ -84,7 +84,7 @@ export default function Dashboard() {
 
   return (
     <div>
-      {loading ? (
+      {isWeb3Enabled && loading ? (
         <div
           style={{
             backgroundColor: "#0000",

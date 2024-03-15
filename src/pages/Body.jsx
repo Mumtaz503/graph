@@ -152,7 +152,8 @@ export default function Body() {
   const handleSuccessNotification = () => {
     dispatch({
       type: "success",
-      message: "Info Added succesfully",
+      message:
+        "Info Added succesfully. Please refresh this page to be redirected to your dashboard",
       title: "Success",
       position: "topR",
     });

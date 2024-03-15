@@ -55,7 +55,6 @@ export default function StepperComponent({ tokenId }) {
           minHeight: "450px",
           width: "700px",
           fontSize: "10",
-          paddingTop: "50px",
         }}
       >
         <Slider
